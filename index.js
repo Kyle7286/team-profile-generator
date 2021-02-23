@@ -18,3 +18,4 @@ team.addEmployee(paul);
 team.addEmployee(david);
 
 team.printTeam();
+console.log(team);
