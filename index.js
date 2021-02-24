@@ -38,8 +38,6 @@ const promptUserSelections = () => {
     ]);
 }
 
-
-
 // prompt, Manager
 const promptUserManager = () => {
     return inquirer.prompt([
@@ -118,35 +116,53 @@ const promptUserIntern = () => {
     ]);
 }
 
-// Do something with the prompts 
-const addManager = ({
-    name,
-    id,
-    email,
-    office
-}) => {
 
-
-    console.log(`${name} | ${id} | ${email}, ${office}`) //something here
-}
 
 const init = () => {
-    console.log(`Hello! Thank you for using Team Profile Generator!  Hope you find it to be very useful.
+    console.log(`
+    Hello! Thank you for using Team Profile Generator!  Hope you find it to be very useful.
     Please begin by entering the Manager's information...`);
+    promptManager()
+}
 
-    promptUserManager()
+
+function promptSelections() {
+    promptUserSelections()
         .then(response => {
-
-            console.log(response);
-            addManager(response);
-
-            // writeFileAsync("./generated/README.md", readme)
-            //     .then(() => console.log("Success"))
-            //     .catch(err => console.log(err));
+            console.log("Selected something...");
+            if (response.selection === "Engineer") { promptEngineer(); }
+            if (response.selection === "Intern") { promptIntern(); }
+            if (response.selection === "Finish") { promptFinish(); }
         });
 }
 
-select
+function promptManager() {
+    promptUserManager()
+        .then(response => {
+            console.log("Finished Manager...");
+            promptSelections();
+        });
+}
+function promptEngineer() {
+    promptUserEngineer()
+        .then(response => {
+            console.log("Finished Engineer");
+            promptSelections();
+        });
+}
+function promptIntern() {
+    promptUserIntern()
+        .then(response => {
+            console.log("Finished Intern");
+            promptSelections();
+        });
+}
+
+function promptFinish() {
+    console.log("All Done! Generating HTML....");
+}
 
 // Run script on call
+const team = new Team("Right Networks");
 init();
+
