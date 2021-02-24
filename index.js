@@ -11,9 +11,6 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
-
-
-
 // prompt, Main Menu
 const promptMainMenu = () => {
     return inquirer.prompt([
@@ -63,7 +60,6 @@ const promptUserManager = () => {
         },
     ]);
 }
-
 // prompt, Engineer
 const promptUserEngineer = () => {
     return inquirer.prompt([
@@ -89,7 +85,6 @@ const promptUserEngineer = () => {
         },
     ]);
 }
-
 // prompt, Intern
 const promptUserIntern = () => {
     return inquirer.prompt([
@@ -116,13 +111,12 @@ const promptUserIntern = () => {
     ]);
 }
 
-
-
 const init = () => {
-    console.log(`
+    console.log('\x1b[36m%s\x1b[0m',`
     Hello! Thank you for using Team Profile Generator!  Hope you find it to be very useful.
-    Please begin by entering the Manager's information...`);
-    promptManager()
+    Please begin by entering the Manager's information...
+    `);
+    promptManager();
 }
 
 
@@ -135,31 +129,37 @@ function promptSelections() {
             if (response.selection === "Finish") { promptFinish(); }
         });
 }
-
 function promptManager() {
     promptUserManager()
         .then(response => {
-            console.log("Finished Manager...");
+            let manager = new Manager(response.name, response.id, response.email, response.office);
+            addToTeam(manager);
             promptSelections();
         });
 }
 function promptEngineer() {
     promptUserEngineer()
         .then(response => {
-            console.log("Finished Engineer");
+            let engineer = new Engineer(response.name, response.id, response.email, response.github);
+            addToTeam(engineer);
             promptSelections();
         });
 }
 function promptIntern() {
     promptUserIntern()
         .then(response => {
-            console.log("Finished Intern");
+            let intern = new Intern(response.name, response.id, response.email, response.school);
+            addToTeam(intern);
             promptSelections();
         });
 }
-
 function promptFinish() {
-    console.log("All Done! Generating HTML....");
+    console.log(`All Done! Generating HTML...`);
+    console.log(team.printTeam());
+    console.log(team);
+}
+function addToTeam(employee) {
+    team.addEmployee(employee);
 }
 
 // Run script on call
