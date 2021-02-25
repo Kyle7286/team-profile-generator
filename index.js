@@ -11,19 +11,21 @@ const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const buildHTML = require("./lib/buildHTML");
+// Global Declarations
+let team;
+
 
 // prompt, Main Menu
-const promptMainMenu = () => {
+const promptUserMainMenu = () => {
     return inquirer.prompt([
         {
-            type: 'confirm',
-            choices: ["Engineer", "Intern", "Finish"],
-            message: 'Please select which role you\'d like to add:',
-            name: 'selection',
+            type: 'input',
+            message: 'Please enter your team name: ',
+            name: 'team',
         },
     ]);
 }
-
 // prompt, Selections
 const promptUserSelections = () => {
     return inquirer.prompt([
@@ -110,18 +112,14 @@ const promptUserIntern = () => {
         },
     ]);
 }
-
-const init = () => {
-    console.log(chalk.bold.blue('Team Profile Generator'));
-    console.log(`
-    Hello! 
-    
-    `+ chalk.underline('Thank you') + ` SO much for using ` + chalk.bold.blue('Team Profile Generator') + `! Hope you find it to be very useful.
-    Please begin by entering the Manager's information...
-        `);
-    promptManager();
+function promptMainMenu() {
+    console.log(chalk.bold.greenBright("Team Name"));
+    promptUserMainMenu()
+        .then(response => {
+            team = new Team(response.team);
+            promptManager()
+        });
 }
-
 function promptSelections() {
     console.log("");
     promptUserSelections()
@@ -130,7 +128,7 @@ function promptSelections() {
             if (response.selection === "Engineer") { promptEngineer(); }
             if (response.selection === "Intern") { promptIntern(); }
             if (response.selection === "Finish") { promptFinish(); }
-            
+
         });
 }
 function promptManager() {
@@ -160,15 +158,25 @@ function promptIntern() {
             promptSelections();
         });
 }
+function addToTeam(employee) {
+    team.addEmployee(employee);
+}
 function promptFinish() {
     console.log(`All Done! Generating HTML...`);
     console.log(team);
 }
-function addToTeam(employee) {
-    team.addEmployee(employee);
+
+const init = () => {
+    console.log(chalk.bold.blue('Team Profile Generator'));
+    console.log(`
+    Hello! 
+    
+    `+ chalk.underline('Thank you') + ` SO much for using ` + chalk.bold.blue('Team Profile Generator') + `! Hope you find it to be very useful.
+    Please begin by entering the Team's name! :)
+    `);
+    promptMainMenu();
 }
 
 // Run script on call
-const team = new Team("Right Networks");
 init();
 
