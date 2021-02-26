@@ -202,11 +202,10 @@ function buildHTMLString(string) {
             </div>
         </div>
     </div>
+
     <div class="container">
-        <div class="row gx-1 gy-4">
-            <div class="team-area col d-flex justify-content-center">
+        <div class="row">
                 ${string}
-            </div>
         </div>
     </div>
     </div>
@@ -244,18 +243,20 @@ function buildCardString(obj) {
                 if (element.github) { sUniqueHTML = `<p class="card-body-tile">Github: ${element.github}</p>` }
                 if (element.school) { sUniqueHTML = `<p class="card-body-tile">School: ${element.school}</p>` }
                 string += `
-            <div class="card ms-3 mt-3">
-                <div class="card-heading">
-                    <div class="heading-content m-2">
-                        <h5>${element.name}</h5>
-                            <h6><i class="fas fa-mug-hot"></i> ${element.role}</h4>
+            <div class="col d-flex justify-content-center">
+                <div class="card ms-3 mt-3">
+                    <div class="card-heading">
+                        <div class="heading-content m-2">
+                            <h5>${element.name}</h5>
+                                <h6><i class="fas fa-mug-hot"></i> ${element.role}</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="body-content">
-                        <p class="card-body-tile">ID: ${element.id}</p>
-                        <p class="card-body-tile">Email: <a href="mailto: ${element.email}">${element.email}</a></p>
-                        ${sUniqueHTML}
+                    <div class="card-body">
+                        <div class="body-content">
+                            <p class="card-body-tile">ID: ${element.id}</p>
+                            <p class="card-body-tile">Email: <a href="mailto: ${element.email}">${element.email}</a></p>
+                            ${sUniqueHTML}
+                        </div>
                     </div>
                 </div>
             </div>
