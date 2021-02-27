@@ -329,7 +329,7 @@ function buildCardString(obj) {
                     sFontAwesome = `<i class="fas fa-mug-hot"></i>`;
                 }
                 if (element.github) {
-                    sUniqueHTML = `<p class="card-body-tile">Github name: <a href="https://github.com/${element.github}">${element.github}</a></p>`;
+                    sUniqueHTML = `<p class="card-body-tile">Github name: <a href="https://github.com/${element.github}" target="_blank">${element.github}</a></p>`;
                     sFontAwesome = `<i class="fas fa-glasses"></i>`;
                 }
                 if (element.school) {
