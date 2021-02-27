@@ -191,7 +191,10 @@ function buildHTMLString(string) {
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
     <link href="./style.css" rel="stylesheet">
+    
     <title>Team Profile Generator</title>
 </head>
 <body>
@@ -213,6 +216,7 @@ function buildHTMLString(string) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
+    <script src="./teamprofile.js"></script>
 </body>
 </html>`
 }
@@ -245,6 +249,7 @@ function buildCardString(obj) {
                 string += `
             <div class="col d-flex justify-content-center">
                 <div class="card ms-3 mt-3">
+                    <i class="profile-picture fas fa-user" style="font-size: 20px;"></i>    
                     <div class="card-heading">
                         <div class="heading-content m-2">
                             <h5>${element.name}</h5>
