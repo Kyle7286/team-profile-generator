@@ -285,7 +285,7 @@ function buildHTMLString(string) {
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 pt-3 pb-3 team-heading">
-                <h1 class="text-center">My Team</h1>
+                <h1 class="text-center">${team.teamName}</h1>
             </div>
         </div>
     </div>
@@ -316,10 +316,6 @@ function buildCardString(obj) {
         for (let j = 0; j < aRole.length; j++) {
 
             let employee = aRole[j];
-            console.log(employee.getName());
-            console.log(employee.getId());
-            console.log(employee.getEmail());
-            console.log(employee.getRole());
 
             // If an employee exists in the current array, create card
             if (employee.role != "undefined") {
@@ -333,7 +329,7 @@ function buildCardString(obj) {
                     sFontAwesome = `<i class="fas fa-mug-hot"></i>`;
                 }
                 if (element.github) {
-                    sUniqueHTML = `<p class="card-body-tile">Github Username: ${element.github}</p>`;
+                    sUniqueHTML = `<p class="card-body-tile">Github name: <a href="https://github.com/${element.github}">${element.github}</a></p>`;
                     sFontAwesome = `<i class="fas fa-glasses"></i>`;
                 }
                 if (element.school) {
