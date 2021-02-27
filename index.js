@@ -194,7 +194,7 @@ function buildHTMLString(string) {
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
     <link href="./style.css" rel="stylesheet">
-    
+
     <title>Team Profile Generator</title>
 </head>
 <body>
@@ -243,17 +243,33 @@ function buildCardString(obj) {
 
                 let element = Object.values(obj)[i][j];
                 let sUniqueHTML;
-                if (element.officeNumber) { sUniqueHTML = `<p class="card-body-tile">Office: ${element.officeNumber}</p>` }
-                if (element.github) { sUniqueHTML = `<p class="card-body-tile">Github: ${element.github}</p>` }
-                if (element.school) { sUniqueHTML = `<p class="card-body-tile">School: ${element.school}</p>` }
+                let sRole = element.role.charAt(0).toUpperCase() + element.role.slice(1);
+
+                // If specific role, grab sepecific information; set specific font awesome string
+                if (element.officeNumber) { 
+                    sUniqueHTML = `<p class="card-body-tile">Office: ${element.officeNumber}</p>`; 
+                    sFontAwesome = `<i class="fas fa-mug-hot"></i>`;
+                }
+                if (element.github) { 
+                    sUniqueHTML = `<p class="card-body-tile">Github: ${element.github}</p>`; 
+                    sFontAwesome = `<i class="fas fa-glasses"></i>`;
+                }
+                if (element.school) { 
+                    sUniqueHTML = `<p class="card-body-tile">School: ${element.school}</p>`;
+                    sFontAwesome = `<i class="fas fa-graduation-cap"></i>`;      
+                }
+                
+
                 string += `
             <div class="col d-flex justify-content-center">
-                <div class="card ms-3 mt-3">
-                    <i class="profile-picture fas fa-user" style="font-size: 20px;"></i>    
+                <div class="card ms-3 mt-3">    
+                    <div class="profile-picture">
+                        <i class="fas fa-user" style="font-size: 20px;"></i>
+                    </div>
                     <div class="card-heading">
                         <div class="heading-content m-2">
                             <h5>${element.name}</h5>
-                                <h6><i class="fas fa-mug-hot"></i> ${element.role}</h4>
+                                <h6>${sFontAwesome} ${sRole}</h6>
                         </div>
                     </div>
                     <div class="card-body">
