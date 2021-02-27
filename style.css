@@ -1,5 +1,5 @@
 body {
-            background-image: url("https://media2.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/200.gif");
+            background-image: url("../images/bg.gif");
             background-size: cover;
            }
         .continer {
@@ -7,7 +7,6 @@ body {
         }
         /* Header Styling */
         .team-heading {
-            /* background-color: #3A6DA1; */
             background-color: black;
             color: white;
             font-family: 'Roboto', sans-serif;

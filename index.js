@@ -269,7 +269,7 @@ function buildHTMLString(string) {
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
-    <link href="./style.css" rel="stylesheet">
+    <link href="./style/style.css" rel="stylesheet">
 
     <title>Team Profile Generator</title>
 </head>
@@ -304,18 +304,20 @@ function buildCardString(obj) {
     // Loop thru items 1 - 3 of object property value array and build the all card strings dynamically
     for (let i = 1; i < 4; i++) {
         let aRole = Object.values(obj)[i];
+        // For Each employee, build the card
         for (let j = 0; j < aRole.length; j++) {
 
             let employee = aRole[j];
-            console.log(employee.name);
-            console.log(employee.role);
-
+            console.log(employee.getName());
+            console.log(employee.getId());
+            console.log(employee.getEmail());
+            console.log(employee.getRole());
+            
             // If an employee exists in the current array, create card
             if (employee.role != "undefined") {
 
                 let element = Object.values(obj)[i][j];
                 let sUniqueHTML;
-                let sRole = element.role.charAt(0).toUpperCase() + element.role.slice(1);
 
                 // If specific role, grab sepecific information; set specific font awesome string
                 if (element.officeNumber) {
@@ -341,7 +343,7 @@ function buildCardString(obj) {
                     <div class="card-heading">
                         <div class="heading-content m-2">
                             <h5>${element.name}</h5>
-                                <h6>${sFontAwesome} ${sRole}</h6>
+                                <h6>${sFontAwesome} ${element.role}</h6>
                         </div>
                     </div>
                     <div class="card-body">
@@ -363,7 +365,7 @@ function buildCardString(obj) {
 }
 function buildStyleSheet() {
     return `body {
-            background-image: url("https://media2.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/200.gif");
+            background-image: url("../images/bg.gif");
             background-size: cover;
            }
         .continer {
@@ -371,7 +373,6 @@ function buildStyleSheet() {
         }
         /* Header Styling */
         .team-heading {
-            /* background-color: #3A6DA1; */
             background-color: black;
             color: white;
             font-family: 'Roboto', sans-serif;
