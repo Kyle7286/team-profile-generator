@@ -244,14 +244,22 @@ function promptFinish() {
     const sHTML = buildHTMLString(sCards);
     const sStyle = buildStyleSheet();
 
-    writeFileAsync("./index.html", sHTML)
+    // Write the html file
+    writeFileAsync("./generated/index.html", sHTML)
         .then(() => console.log("Success"))
         .catch(err => console.log(err));
 
-
-    writeFileAsync("./style.css", sStyle)
+    // Write the CSS file
+    writeFileAsync("./generated/style.css", sStyle)
         .then(() => console.log("Success"))
         .catch(err => console.log(err));
+
+    // Copy over assets
+    // Creates /tmp/a/apple, regardless of whether `/tmp` and /tmp/a exist.
+    fs.copyFile("./assets/images/bg.gif", "./generated/bg.gif", (err) => {
+        if (err) throw err;
+        console.log("Successfully copied BG image!");
+    });
 
 }
 // Build the entire HTML page
@@ -269,7 +277,7 @@ function buildHTMLString(string) {
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
-    <link href="./style/style.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
 
     <title>Team Profile Generator</title>
 </head>
@@ -312,7 +320,7 @@ function buildCardString(obj) {
             console.log(employee.getId());
             console.log(employee.getEmail());
             console.log(employee.getRole());
-            
+
             // If an employee exists in the current array, create card
             if (employee.role != "undefined") {
 
@@ -325,7 +333,7 @@ function buildCardString(obj) {
                     sFontAwesome = `<i class="fas fa-mug-hot"></i>`;
                 }
                 if (element.github) {
-                    sUniqueHTML = `<p class="card-body-tile">Github: ${element.github}</p>`;
+                    sUniqueHTML = `<p class="card-body-tile">Github Username: ${element.github}</p>`;
                     sFontAwesome = `<i class="fas fa-glasses"></i>`;
                 }
                 if (element.school) {
@@ -343,7 +351,7 @@ function buildCardString(obj) {
                     <div class="card-heading">
                         <div class="heading-content m-2">
                             <h5>${element.name}</h5>
-                                <h6>${sFontAwesome} ${element.role}</h6>
+                                <h6>${sFontAwesome} ${element.getRole()}</h6>
                         </div>
                     </div>
                     <div class="card-body">
@@ -365,7 +373,7 @@ function buildCardString(obj) {
 }
 function buildStyleSheet() {
     return `body {
-            background-image: url("../images/bg.gif");
+            background-image: url("./bg.gif");
             background-size: cover;
            }
         .continer {
