@@ -1,0 +1,53 @@
+body {
+            background-image: url("https://media2.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/200.gif");
+            background-size: cover;
+           }
+        .continer {
+            position: fixed;
+        }
+        /* Header Styling */
+        .team-heading {
+            /* background-color: #3A6DA1; */
+            background-color: black;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+        /* Link Styling */
+        a {
+            text-decoration: none;
+            
+        }
+        a:hover {
+            color: rgb(1, 184, 250);
+        }
+        /* Card Styling */
+        .card {
+            position: relative;
+            max-width: 12rem;
+            min-width: 12rem;
+            border-style: none;
+            box-shadow: 2px 2px 2px 2px #777777;
+            font-size: 8pt;
+            font-family: 'Roboto', sans-serif;
+        }
+        .card-heading {
+            background-color: #0086DD;
+            color: white;
+        }
+        .fas {
+            color: #ffff;
+        }
+        .card-body  {
+            background-color: #F7F8F9;
+        }
+        .card-body-tile {
+            background-color: #FFFFFF;
+            margin: .1rem;
+            padding: .5rem; 
+        }
+        .profile-picture {
+            position:absolute;
+            right: 10px;
+            top: 10px;
+            text-align: center
+        }
